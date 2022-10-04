@@ -21,6 +21,7 @@
   "include": ["src"],
   "paths": {
     "pages/*": ["pages/*"],
+    "server/*": ["server/*"],
     "containers/*": ["containers/*"],
     "components/*": ["components/*"],
     "sections/*": ["sections/*"],

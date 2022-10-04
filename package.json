@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.27.2",
+    "cross-env": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^4.0.3",
@@ -10,6 +12,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
+    "dev": "cross-env NODE_ENV=development react-app-rewired start",
     "test": "react-app-rewired test"
   },
   "eslintConfig": {

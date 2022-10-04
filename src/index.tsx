@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { server } from 'server/browser';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
   throw new Error('#root Not Found');
 }
 const root = ReactDOM.createRoot(rootElement);
+
+if (process.env.NODE_ENV === 'development') {
+  server.start({ onUnhandledRequest: 'bypass' });
+}
 
 root.render(
   <React.StrictMode>
