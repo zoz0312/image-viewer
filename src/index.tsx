@@ -4,20 +4,30 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { server } from 'server/browser';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+require('dotenv').config();
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
   throw new Error('#root Not Found');
 }
 const root = ReactDOM.createRoot(rootElement);
+const isDevMode = process.env.REACT_APP_NODE_ENV === 'development';
 
-if (process.env.NODE_ENV === 'development') {
+console.log('isDevMode', isDevMode);
+if (isDevMode) {
   server.start({ onUnhandledRequest: 'bypass' });
 }
 
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <React.Suspense fallback={null}>
+        <App />
+      </React.Suspense>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

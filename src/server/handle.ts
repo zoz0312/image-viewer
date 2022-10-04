@@ -6,5 +6,5 @@ export function handlers() {
 }
 
 const getImages: Parameters<typeof rest.get>[1] = (_, res, ctx) => {
-  return res(ctx.json(images));
+  return res(ctx.status(200), ctx.json(images));
 };

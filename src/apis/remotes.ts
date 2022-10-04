@@ -5,12 +5,12 @@ export function getImages() {
 }
 
 export interface GetImages {
-  documents: {
+  documents: Array<{
     contents: string;
     datetime: string;
     title: string;
     url: string;
-  }[];
+  }>;
   meta: {
     is_end: boolean;
     pageable_count: number;
