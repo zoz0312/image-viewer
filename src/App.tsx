@@ -1,8 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getImages } from 'apis/remotes';
+import { GET_ITEM_SIZE } from 'constants/common';
 
 function App() {
-  const { data } = useQuery(['getImages'], getImages);
+  const { data } = useQuery(['getImages'], () => {
+    return getImages({ query: 'kia', size: GET_ITEM_SIZE, sort: 'accuracy' });
+  });
 
   console.log('data', data?.data);
   return (
