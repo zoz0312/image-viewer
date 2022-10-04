@@ -1,6 +1,6 @@
 import { GetImages } from 'apis/remotes';
 
-const 이미지: GetImages = {
+export const images: GetImages = {
   documents: [
     {
       contents:
@@ -80,5 +80,3 @@ const 이미지: GetImages = {
     total_count: 1625808,
   },
 };
-
-export const images = [이미지];
