@@ -5,7 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { server } from 'server/browser';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-require('dotenv').config();
+import { config } from 'dotenv';
+config();
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -14,7 +15,6 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 const isDevMode = process.env.REACT_APP_NODE_ENV === 'development';
 
-console.log('isDevMode', isDevMode);
 if (isDevMode) {
   server.start({ onUnhandledRequest: 'bypass' });
 }

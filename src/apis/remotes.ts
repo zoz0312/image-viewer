@@ -7,10 +7,14 @@ export function getImages(data: { query: string; sort?: 'accuracy' | 'recency'; 
 
 export interface GetImages {
   documents: Array<{
-    contents: string;
+    collection: string;
     datetime: string;
-    title: string;
-    url: string;
+    display_sitename: string;
+    doc_url: string;
+    height: number;
+    image_url: string;
+    thumbnail_url: string;
+    width: number;
   }>;
   meta: {
     is_end: boolean;
