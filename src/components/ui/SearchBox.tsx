@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import SearchIcon from 'assets/Icon/searchIcon.svg';
+import { ChangeEventHandler, KeyboardEvent, MouseEventHandler } from 'react';
 
 const SearchBoxWrap = styled.div`
   height: 50px;
@@ -26,11 +27,21 @@ const SearchBoxWrap = styled.div`
   }
 `;
 
-export function SearchBox() {
+interface Props {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+}
+
+export function SearchBox({ onChange, onClick }: Props) {
+  const onKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onClick(e as any);
+    }
+  };
   return (
     <SearchBoxWrap>
-      <input type="text" placeholder="검색어를 입력하세요" />
-      <button>
+      <input type="text" placeholder="검색어를 입력하세요" onChange={onChange} onKeyDown={onKeyPress} />
+      <button onClick={onClick}>
         <img src={SearchIcon} />
       </button>
     </SearchBoxWrap>

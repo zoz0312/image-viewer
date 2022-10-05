@@ -1,56 +1,36 @@
-import { useInView } from 'react-intersection-observer';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { getImages, SortType } from 'apis/remotes';
-import { GET_ITEM_SIZE } from 'constants/common';
-import { useEffect, useState } from 'react';
-import { SearchBox } from 'components/SearchBox';
-import RoundButton from 'components/RoundButton';
-import CardList from 'components/CardList';
-import CardListRow from 'components/CardListRow';
-import Spacing from 'components/Spacing';
-import { nanoid } from 'nanoid';
+import { SortType } from 'apis/remotes';
+import { useCallback, useState } from 'react';
+import { SearchBox } from 'components/ui/SearchBox';
+import RoundButton from 'components/ui/RoundButton';
+import Spacing from 'components/ui/Spacing';
+import ImageViewer from 'components/ImageViewer';
 
 function App() {
   const [sort, setSort] = useState<SortType>('accuracy');
-  const { ref, inView } = useInView();
-  const { data, remove, refetch, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ['infiniteGetImages', sort],
-    async ({ pageParam = 1 }) => {
-      const { data } = await getImages({ query: 'kia', page: pageParam, size: GET_ITEM_SIZE, sort });
-      return {
-        ...data,
-        nextPage: pageParam + 1,
-      };
-    },
-    {
-      getNextPageParam: lastPage => {
-        return lastPage.nextPage;
-      },
-    }
-  );
-
-  useEffect(() => {
-    remove();
-    refetch();
-  }, [sort, remove, refetch]);
-
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [inView, fetchNextPage]);
-
-  if (!data) {
-    return <>Loading</>;
-  }
+  const [isSearched, setIsSearched] = useState(false);
+  const [inputQuery, setInputQuery] = useState(''); // input 상태
+  const [query, setQuery] = useState('');
 
   const onFilterClick = (e: any) => {
     setSort(e.target.value as SortType);
   };
+
+  const onQueryChange = useCallback(
+    (e: any) => {
+      setInputQuery(e.target.value);
+    },
+    [setInputQuery]
+  );
+
+  const onSearchClick = () => {
+    setQuery(inputQuery);
+    setIsSearched(true);
+  };
+
   return (
     <div style={{ maxWidth: '500px', margin: 'auto' }}>
       <header>
-        <SearchBox />
+        <SearchBox onChange={onQueryChange} onClick={onSearchClick} />
         <Spacing size={10} />
         <RoundButton className={sort === 'accuracy' ? 'active' : ''} value="accuracy" onClick={onFilterClick}>
           정확도순
@@ -65,18 +45,7 @@ function App() {
         </RoundButton>
       </header>
       <Spacing size={20} />
-      <main>
-        <CardList>
-          {data.pages.map(page =>
-            page.documents.map(item => (
-              <CardListRow imageSrc={item.thumbnail_url} key={nanoid()}>
-                <span>{item.display_sitename}</span>
-              </CardListRow>
-            ))
-          )}
-        </CardList>
-      </main>
-      {isFetchingNextPage ? <>Loading</> : <div ref={ref}>will load</div>}
+      <main>{isSearched && <ImageViewer query={query} sort={sort} />}</main>
     </div>
   );
 }
