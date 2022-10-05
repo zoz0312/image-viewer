@@ -37,7 +37,7 @@ function CardListRow({ imageSrc, children }: Props) {
   return (
     <Li>
       <div className="card">
-        <img style={{ backgroundImage: `url(${imageSrc})` }} />
+        <img style={{ backgroundImage: `url(${imageSrc})` }} loading="lazy" />
         <div className="card-content">{children}</div>
       </div>
     </Li>
