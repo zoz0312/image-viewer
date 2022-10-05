@@ -7,28 +7,15 @@ import { GET_ITEM_SIZE } from 'constants/common';
 import { nanoid } from 'nanoid';
 import { useInView } from 'react-intersection-observer';
 import SkeletonCardListRow from 'components/skeleton/SkeletonCardListRow';
+import infiniteGetImages from 'queries/infiniteGetImages';
 
-interface Props {
+export interface ImageViewerProps {
   query: string;
   sort: SortType;
 }
-function ImageViewer({ query, sort }: Props) {
+function ImageViewer({ query, sort }: ImageViewerProps) {
   const { ref, inView } = useInView();
-  const { data, remove, refetch, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    ['infiniteGetImages', query, sort],
-    async ({ pageParam = 1 }) => {
-      const { data } = await getImages({ query, page: pageParam, size: GET_ITEM_SIZE, sort });
-      return {
-        ...data,
-        nextPage: pageParam + 1,
-      };
-    },
-    {
-      getNextPageParam: lastPage => {
-        return lastPage.nextPage;
-      },
-    }
-  );
+  const { data, remove, refetch, fetchNextPage, isFetchingNextPage } = infiniteGetImages({ query, sort });
 
   useEffect(() => {
     remove();

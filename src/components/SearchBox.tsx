@@ -80,12 +80,14 @@ export function SearchBox({ onChange, onClick }: Props) {
       <SearchBoxWrap>
         <input
           type="text"
+          id="queryInput"
+          data-testid="queryInput"
           placeholder="검색어를 입력하세요"
           onChange={onChange}
           onKeyDown={onKeyPress}
           onClick={() => setIsShowHistory(true)}
         />
-        <button onClick={onClick}>
+        <button id="search" data-testid="search" onClick={onClick}>
           <img src={SearchIcon} />
         </button>
       </SearchBoxWrap>

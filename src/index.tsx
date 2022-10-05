@@ -20,6 +20,7 @@ if (isDevMode) {
 
 const queryClient = new QueryClient();
 
+//TODO: Suspense fallback Loading컴포넌트 추가 가능
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
