@@ -1,9 +1,10 @@
 import { SortType } from 'apis/remotes';
 import { useCallback, useState } from 'react';
-import { SearchBox } from 'components/ui/SearchBox';
+import { SearchBox } from 'components/SearchBox';
 import RoundButton from 'components/ui/RoundButton';
 import Spacing from 'components/ui/Spacing';
 import ImageViewer from 'components/ImageViewer';
+import { setQueryHistory } from 'utils/common';
 
 function App() {
   const [sort, setSort] = useState<SortType>('accuracy');
@@ -25,6 +26,7 @@ function App() {
   const onSearchClick = () => {
     setQuery(inputQuery);
     setIsSearched(true);
+    setQueryHistory(inputQuery);
   };
 
   return (
