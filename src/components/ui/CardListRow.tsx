@@ -26,10 +26,10 @@ const Li = styled.li`
   }
 `;
 
-export type Props = {
-  children: ReactNode;
+type Props = {
+  children?: ReactNode;
   className?: string;
-  imageSrc: string;
+  imageSrc?: string;
 };
 
 function CardListRow({ imageSrc, children }: Props) {

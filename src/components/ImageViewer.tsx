@@ -6,6 +6,7 @@ import CardListRow from 'components/ui/CardListRow';
 import { GET_ITEM_SIZE } from 'constants/common';
 import { nanoid } from 'nanoid';
 import { useInView } from 'react-intersection-observer';
+import SkeletonCardListRow from 'components/skeleton/SkeletonCardListRow';
 
 interface Props {
   query: string;
@@ -41,8 +42,13 @@ function ImageViewer({ query, sort }: Props) {
   }, [inView, fetchNextPage]);
 
   if (!data) {
-    // TODO: 스켈레톤 UI 적용
-    return <>Loading!!! Loading </>;
+    return (
+      <>
+        <CardList>
+          <SkeletonCardListRow />
+        </CardList>
+      </>
+    );
   }
 
   return (
