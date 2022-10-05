@@ -5,6 +5,10 @@ const RoundButton = styled.button`
   border-radius: 50px;
   border: 1px solid #d0d0d0;
   font-size: 0.6rem;
+
+  &.active {
+    background-color: #d0d0d0;
+  }
 `;
 
 export default RoundButton;

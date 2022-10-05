@@ -1,7 +1,10 @@
 import { http } from 'utils/http';
 import qs from 'qs';
 
-export function getImages(data: { query: string; sort?: 'accuracy' | 'recency'; page?: number; size?: number }) {
+export type SortType =
+  | 'accuracy' // 정확도순
+  | 'recency'; // 최신순;
+export function getImages(data: { query: string; sort?: SortType; page?: number; size?: number }) {
   return http.get<GetImages>(`/v2/search/image${qs.stringify(data, { addQueryPrefix: true })}`);
 }
 
