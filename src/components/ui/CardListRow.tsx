@@ -2,15 +2,16 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Li = styled.li`
+  flex-grow: 1;
   box-sizing: border-box;
-  flex: 0 0 50%;
   list-style-type: none;
   padding: 5px;
   text-align: center;
 
   & .card {
     display: inline-block;
-    width: 200px;
+    width: 100%;
+    min-width: 180px;
     border: 1px solid #d0d0d0;
     border-radius: 3px;
   }
