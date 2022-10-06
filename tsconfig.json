@@ -20,18 +20,13 @@
   },
   "include": ["src"],
   "paths": {
-    "pages/*": ["pages/*"],
+    "apis/*": ["apis/*"],
+    "assets/*": ["assets/*"],
     "server/*": ["server/*"],
-    "containers/*": ["containers/*"],
     "components/*": ["components/*"],
-    "sections/*": ["sections/*"],
     "constants/*": ["constants/*"],
-    "models/*": ["models/*"],
-    "remotes/*": ["remotes/*"],
-    "styles/*": ["styles/*"],
     "utils/*": ["utils/*"],
     "hooks/*": ["hooks/*"],
-    "stores/*": ["stores/*"],
     "queries/*": ["queries/*"]
   }
 }

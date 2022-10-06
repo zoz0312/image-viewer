@@ -1,9 +1,7 @@
-import { getImages, SortType } from 'apis/remotes';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { SortType } from 'apis/remotes';
 import { useEffect } from 'react';
 import CardList from 'components/ui/CardList';
 import CardListRow from 'components/ui/CardListRow';
-import { GET_ITEM_SIZE } from 'constants/common';
 import { nanoid } from 'nanoid';
 import { useInView } from 'react-intersection-observer';
 import SkeletonCardListRow from 'components/skeleton/SkeletonCardListRow';
