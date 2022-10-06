@@ -19,13 +19,3 @@ module.exports = {
   transformIgnorePatterns: ['node_modules/(?!nanoid/.*)'],
   setupFilesAfterEnv: ['./jest.setup.js'],
 };
-// "jest": {
-//   "preset": "ts-jest",
-//   "testEnvironment": "node",
-//   "transform": {
-//     "^.+\\.(t|j)sx?$": "ts-jest"
-//   },
-//   "transformIgnorePatterns": [
-//     "node_modules/(?!variables/.*)"
-//   ]
-// },

@@ -56,3 +56,10 @@ global.window.HTMLCanvasElement.prototype.getContext = () => {
 global.window.HTMLCanvasElement.prototype.toDataURL = () => {
   return '';
 };
+
+const localStorageMock = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  clear: jest.fn(),
+};
+global.localStorage = localStorageMock;

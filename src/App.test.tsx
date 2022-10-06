@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 import { server } from 'server/node';
 import userEvent from '@testing-library/user-event';
@@ -36,11 +36,18 @@ describe('App', () => {
 
   test('1. 검색하기', async () => {
     renderWithClient(queryClient, <App />);
-    // const { result } = renderHook(() => infiniteGetImages({ query: 'test', sort: 'accuracy' }), {
-    //   wrapper,
-    // });
 
-    userEvent.type(screen.getByTestId('queryInput'), 'test');
-    await userEvent.click(screen.getByTestId('search'));
+    const searchInput = (await screen.findByPlaceholderText('검색어를 입력하세요')) as HTMLInputElement;
+    await userEvent.click(searchInput);
+    await screen.findByText('최근검색어 전체 삭제');
+    expect(searchInput.value).toBe('');
+    fireEvent.change(searchInput, { target: { value: 'Testing' } });
+    expect(searchInput.value).toBe('Testing');
+
+    const searchButton = screen.getByTestId('search');
+    fireEvent.click(searchButton);
   });
+
+  it.todo('2. 검색 후 결과 도출');
+  it.todo('3. Storage get/set');
 });

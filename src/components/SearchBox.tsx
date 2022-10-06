@@ -88,7 +88,7 @@ export function SearchBox({ onChange, onClick }: Props) {
           onClick={() => setIsShowHistory(true)}
         />
         <button id="search" data-testid="search" onClick={onClick}>
-          <img src={SearchIcon} />
+          <img src={`${SearchIcon}`} />
         </button>
       </SearchBoxWrap>
 
