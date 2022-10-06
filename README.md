@@ -29,6 +29,34 @@
 - REACT_APP_NODE_ENV: developlemnt | production
 - REACT_APP_API_KEY: kakao api key
 
+## 시작방법
+
+### install
+
+```
+yarn install
+```
+
+### 리얼서버 시작
+
+```
+yarn start
+```
+
+### 개발서버 시작 (msw)
+
+```
+yarn start:dev
+```
+
+### 테스팅
+
+```
+yarn jest
+```
+
+<hr />
+
 ## 개선점
 
 1. Testing
